@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./Login.css"
 import assets from "../../assets/assets"
-import { login, signup } from '../../config/firebase'
+import { login, signup, resetPassword } from '../../config/firebase'
 import { toast } from 'react-toastify'
 
 const Login = () => {
@@ -47,6 +47,9 @@ const Login = () => {
         {
           currentState === "Sign Up"?  <p className="login-toggle"> Already have an account <span onClick={()=> setCurrentState("login")}> Login Here</span></p>
           : <p className="login-toggle"> Create an account <span onClick={()=> setCurrentState("Sign Up")}> Click Here</span></p>
+        }
+        {
+          currentState === "login" ? <p className="login-toggle"> Forgot Password ?<span onClick={()=> resetPassword(email)}> Reset here</span></p> : null
         }
        
        

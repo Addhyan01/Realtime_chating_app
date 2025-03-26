@@ -11,6 +11,10 @@ const AppContextProvider = ( props ) => {
 
     const [userData, setUserData] = useState(null);
     const [chatData, setChatData] = useState(null);
+    const [messageId, setMessageId] = useState(null);
+    const [messages, setMessages] = useState([]);
+    const [chatUser, setChatUser] = useState(null);
+    const [chatVisible, setChatVisible] = useState(false);
 
     const loadUserData =  async (uid) => {
         try {
@@ -19,7 +23,7 @@ const AppContextProvider = ( props ) => {
             const userData = userSnap.data();
             
             setUserData(userData);
-            if(userData.avtar && userData.name){
+            if(userData.avatar && userData.name){
                 navigate("/chat");
             } 
             else{
@@ -64,7 +68,11 @@ const AppContextProvider = ( props ) => {
     const value = {
         userData, setUserData,
         chatData, setChatData ,
-        loadUserData
+        loadUserData,
+        messageId, setMessageId,
+        messages, setMessages,
+        chatUser, setChatUser,
+        chatVisible, setChatVisible
 
         
     }
