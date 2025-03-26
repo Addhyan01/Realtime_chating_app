@@ -40,7 +40,7 @@ const AppContextProvider = ( props ) => {
                     });
                 }
                 
-            }, 60000    );
+            }, 10000);    
         }
         catch (error) {}
     }

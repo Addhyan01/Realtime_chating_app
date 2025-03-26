@@ -3,7 +3,7 @@ import "./LeftSideBar.css"
 import assets from '../../assets/assets'
 import { useNavigate } from 'react-router-dom';
 import { arrayUnion, collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from 'firebase/firestore';
-import { db } from '../../config/firebase';
+import { db, logout } from '../../config/firebase';
 import { AppContext } from '../../context/AppContext';
 import { toast } from 'react-toastify';
 
@@ -27,6 +27,7 @@ const LeftSideBar = () => {
 
 
         if (!querySnap.empty && querySnap.docs[0].data().id !== userData.id) {
+
           let userExist = false
           chatData.map((user) => {
             if(user.rId === querySnap.docs[0].data().id){
@@ -72,7 +73,7 @@ const LeftSideBar = () => {
         chatsData:arrayUnion({
           messageId:newMessageRef.id,
           lastMessage:"",
-          rId:user.id,
+          rId:userData.id,
           updatedAt:Date.now(),
           messageSeen:true
 
@@ -166,7 +167,7 @@ const LeftSideBar = () => {
             <div className="sub-menu">
               <p onClick={() => navigate("/profile")}>Edit Profile</p>
               <hr />
-              <p >Logout</p>
+              <p onClick={logout} >Logout</p>
             </div>
           </div>
         </div>
